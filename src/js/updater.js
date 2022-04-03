@@ -121,7 +121,11 @@ export const updateMetricData = (d) => {
     }
 
     for (let o in metric) {
-        $(`#${o}`).text(n2f(metric[o]))
+        if (["sync_timestamp_committed", "sync_timestamp_real", "sync_timestamp_synced"].includes(o)) {
+            $(`#${o}`).text(datetime(+metric[o]).format(DATE_TIME_FORMAT))
+        } else {
+            $(`#${o}`).text(n2f(metric[o]))
+        }
     }
 
     const syncStatus = $("#sync_status")
