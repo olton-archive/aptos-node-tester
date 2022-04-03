@@ -1,4 +1,4 @@
-import {updateMetricData} from "./updater";
+import {updateApiData, updateData, updateMetricData} from "./updater";
 
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN
 
@@ -54,6 +54,14 @@ const wsMessageController = (ws, response) => {
                     prot: "http"
                 }
             }))
+            ws.send(JSON.stringify({
+                channel: 'api2',
+                data: {
+                    host: nodeAddress,
+                    port: metricPort,
+                    prot: "http"
+                }
+            }))
         }
 
         setTimeout(requestData, 5000, ws)
@@ -66,6 +74,11 @@ const wsMessageController = (ws, response) => {
         }
         case 'metrics2': {
             updateMetricData(data)
+            $("#activity").hide()
+            break
+        }
+        case 'api2': {
+            updateApiData(data)
             $("#activity").hide()
             break
         }

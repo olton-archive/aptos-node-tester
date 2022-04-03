@@ -1,9 +1,8 @@
 import {DATE_TIME_FORMAT} from "./consts";
-import {parseMetrics} from "./parser";
 import {n2f} from "./utils";
 
-export const updateApiData = () => {
-    const ledger = data.api
+export const updateLedgerData = (data) => {
+    const ledger = data.ledger
     const apiStatus = $("#api_status")
     const chainStatus = $("#chain_status")
 
@@ -38,7 +37,7 @@ export const updateApiData = () => {
     }
 }
 
-export const updateHealthData = () => {
+export const updateHealthData = (data) => {
     const h = data.health
     const c = h && !h.includes("error") ? "fg-green" : "fg-red"
     const n = $("#node_health")
@@ -50,7 +49,7 @@ export const updateMetricData = (d) => {
     let metric
     const status = typeof d.connections_inbound !== "undefined"
 
-    if (!d) {
+    if (!status) {
         metric = {
             "connections_inbound": "0",
             "connections_outbound": "0",
@@ -163,7 +162,7 @@ export const updateMetricData = (d) => {
 }
 
 
-export const updateData = () => {
-    updateApiData()
-    updateHealthData()
+export const updateApiData = (data) => {
+    updateLedgerData(data)
+    updateHealthData(data)
 }
