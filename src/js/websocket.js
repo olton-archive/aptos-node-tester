@@ -43,7 +43,23 @@ const wsMessageController = (ws, response) => {
         return
     }
 
-    const requestData = ws => {
+    const requestApiData = ws => {
+        if (isOpen(ws) && nodeAddress) {
+            $("#activity").show()
+            ws.send(JSON.stringify({
+                channel: 'api2',
+                data: {
+                    host: nodeAddress,
+                    port: metricPort,
+                    prot: "http"
+                }
+            }))
+        } else {
+            setTimeout(requestApiData, 5000, ws)
+        }
+    }
+
+    const requestMetricsData = ws => {
         if (isOpen(ws) && nodeAddress) {
             $("#activity").show()
             ws.send(JSON.stringify({
@@ -54,31 +70,26 @@ const wsMessageController = (ws, response) => {
                     prot: "http"
                 }
             }))
-            ws.send(JSON.stringify({
-                channel: 'api2',
-                data: {
-                    host: nodeAddress,
-                    port: metricPort,
-                    prot: "http"
-                }
-            }))
+        } else {
+            setTimeout(requestMetricsData, 5000, ws)
         }
-
-        setTimeout(requestData, 5000, ws)
     }
 
     switch(channel) {
         case 'welcome': {
-            requestData(ws)
+            requestApiData(ws)
+            requestMetricsData(ws)
             break
         }
         case 'metrics2': {
             updateMetricData(data)
+            setTimeout(requestMetricsData, 5000, ws)
             $("#activity").hide()
             break
         }
         case 'api2': {
             updateApiData(data)
+            setTimeout(requestApiData, 5000, ws)
             $("#activity").hide()
             break
         }
