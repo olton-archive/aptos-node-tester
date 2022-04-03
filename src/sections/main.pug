@@ -1,4 +1,23 @@
 main.container-fluid
+    div.row.text-center.text-small.fg-white
+        div.cell-md-3
+            div.border.bd-default.p-2
+                span API STATUS:
+                span.text-bold.ml-1#api_status ---
+        div.cell-md-3
+            div.border.bd-default.p-2
+                span METRIC STATUS:
+                span.text-bold.ml-1#metric_status ---
+        div.cell-md-3
+            div.border.bd-default.p-2
+                span SYNC STATUS:
+                span.text-bold.ml-1#sync_status ---
+        div.cell-md-3
+            div.border.bd-default.p-2
+                span PEER STATUS:
+                span.text-bold.ml-1#peer_status ---
+
+
     div.row
         div.cell-md-6.cell-lg-3
             include ../blocks/api-ledger-info
