@@ -113,7 +113,13 @@ export const updateMetricData = (d) => {
             "shared_mempool_events_new_peer": "0",
             "system_physical_core_count": "0",
             "system_total_memory": "0",
-            "system_used_memory": "0"
+            "system_used_memory": "0",
+            "sync_timestamp_committed": "0",
+            "sync_timestamp_synced": "0",
+            "sync_timestamp_real": "0",
+            "data_client_success_responses": "0",
+            "data_client_success_responses_summary_server": "0",
+            "mempool_active_upstream_peers_count": "0",
         }
     } else {
         metric = (d)
