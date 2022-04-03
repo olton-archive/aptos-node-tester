@@ -5,7 +5,7 @@
     "source": "src/index.pug",
     "scripts": {
         "start": "shx rm -rf .output/* && parcel --open --dist-dir .output",
-        "prebuild": "shx rm -rf build/*",
+        "prebuild": "shx rm -rf .build/*",
         "build": "parcel build --dist-dir .build --public-url ."
     },
     "devDependencies": {

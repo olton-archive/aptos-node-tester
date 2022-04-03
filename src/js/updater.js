@@ -107,7 +107,7 @@ export const updateMetricData = (d) => {
             "system_used_memory": "0"
         }
     } else {
-        metric = parseMetrics(d)
+        metric = (d)
     }
 
     for (let o in metric) {

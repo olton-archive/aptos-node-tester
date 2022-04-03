@@ -47,7 +47,7 @@ const wsMessageController = (ws, response) => {
         if (isOpen(ws) && nodeAddress) {
             $("#activity").show()
             ws.send(JSON.stringify({
-                channel: 'metrics',
+                channel: 'metrics2',
                 data: {
                     host: nodeAddress,
                     port: metricPort,
@@ -64,7 +64,7 @@ const wsMessageController = (ws, response) => {
             requestData(ws)
             break
         }
-        case 'metrics': {
+        case 'metrics2': {
             updateMetricData(data)
             $("#activity").hide()
             break
