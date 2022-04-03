@@ -146,7 +146,7 @@ export const updateMetricData = (d) => {
         syncStatus.text("SYNCED")
     } else {
         syncStatus.parent().addClass("bg-red")
-        syncStatus.text("NOT SYNCED")
+        syncStatus.text(!status ? "NO DATA" : "NOT SYNCED")
     }
 
     const peerStatus = $("#peer_status")
