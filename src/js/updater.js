@@ -24,7 +24,7 @@ export const updateLedgerData = (data) => {
         apiStatus.text("CONNECTED")
     } else {
         apiStatus.parent().addClass("bg-red")
-        apiStatus.text("NOT CONNECTED")
+        apiStatus.text("PORT CLOSED")
     }
 
     chainStatus.parent().removeClassBy("bg-")
@@ -168,7 +168,7 @@ export const updateMetricData = (d) => {
         metricStatus.text("CONNECTED")
     } else {
         metricStatus.parent().addClass("bg-red")
-        metricStatus.text("NOT CONNECTED")
+        metricStatus.text("PORT CLOSED")
     }
 }
 
