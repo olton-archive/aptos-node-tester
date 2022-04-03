@@ -28,12 +28,17 @@ export const updateLedgerData = (data) => {
     }
 
     chainStatus.parent().removeClassBy("bg-")
-    if (ledger && +ledger.chain_id === 6) {
-        chainStatus.parent().addClass("bg-green")
-        chainStatus.text("IN CHAIN")
+    if (ledger && +ledger.chain_id) {
+        if (+ledger.chain_id === 6) {
+            chainStatus.parent().addClass("bg-green")
+            chainStatus.text("IN CHAIN")
+        } else {
+            chainStatus.parent().addClass("bg-red")
+            chainStatus.text("UPDATE NODE")
+        }
     } else {
         chainStatus.parent().addClass("bg-red")
-        chainStatus.text("UPDATE NODE")
+        chainStatus.text("NO CHAIN DATA")
     }
 }
 
