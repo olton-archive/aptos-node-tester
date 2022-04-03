@@ -2,21 +2,19 @@
     "name": "@olton/aptos-node-tester",
     "version": "0.1.0",
     "license": "MIT",
+    "source": "src/index.pug",
     "scripts": {
-        "client": "shx rm -rf .output/* && parcel serve ./src/index.html --out-dir .output -p 2222 ",
-        "start": "shx rm -rf .output/* && parcel serve ./src/index.html --open --out-dir .output",
+        "start": "shx rm -rf .output/* && parcel --open --dist-dir .output",
         "prebuild": "shx rm -rf build/*",
-        "build": "parcel build ./src/index.html --out-dir .build --no-minify --no-source-maps --public-url ."
+        "build": "parcel build --dist-dir .build --public-url ."
     },
     "devDependencies": {
-        "less": "^4.1.2",
-        "parcel-bundler": "^1.12.5",
-        "parcel-plugin-html-partials": "^0.0.6",
-        "parcel-plugin-static-files-copy": "^2.6.0",
+        "@parcel/transformer-pug": "^2.4.1",
+        "parcel": "^2.4.1",
+        "pug": "^3.0.2",
         "shx": "^0.3.3"
     },
-    "staticFiles": {
-    },
+    "staticFiles": {},
     "browserslist": [
         "last 1 Chrome versions",
         "last 1 Firefox versions",
