@@ -5,6 +5,7 @@ import {n2f} from "./utils";
 export const updateApiData = () => {
     const ledger = data.api
     const apiStatus = $("#api_status")
+    const chainStatus = $("#chain_status")
 
     if (ledger) {
         $("#chain_id").text(ledger.chain_id)
@@ -25,6 +26,15 @@ export const updateApiData = () => {
     } else {
         apiStatus.parent().addClass("bg-red")
         apiStatus.text("NOT CONNECTED")
+    }
+
+    chainStatus.parent().removeClassBy("bg-")
+    if (ledger && +ledger.chain_id === 6) {
+        chainStatus.parent().addClass("bg-green")
+        chainStatus.text("IN CHAIN")
+    } else {
+        chainStatus.parent().addClass("bg-red")
+        chainStatus.text("UPDATE NODE")
     }
 }
 
