@@ -48,7 +48,7 @@ export const updateHealthData = () => {
 
 export const updateMetricData = (d) => {
     let metric
-    const status = !!d
+    const status = typeof d.connections_inbound !== "undefined"
 
     if (!d) {
         metric = {
