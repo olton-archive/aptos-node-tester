@@ -1,4 +1,4 @@
-import {DATE_TIME_FORMAT} from "./consts";
+import {DATE_TIME_FORMAT, METRIC_DEFAULT} from "./consts";
 import {n2f} from "./utils";
 
 export const updateLedgerData = (data) => {
@@ -51,6 +51,7 @@ export const updateHealthData = (data) => {
 }
 
 export const updateMetricData = (d) => {
+    console.log(d)
     let metric
     const status = typeof d.system_physical_core_count !== "undefined"
     const errorLog = $("#error-log")
@@ -59,77 +60,7 @@ export const updateMetricData = (d) => {
         errorLog.html(
             `<div class="remark alert">Metric Error: ${d.split(":error:")[1]}</div>`
         )
-        metric = {
-            "connections_inbound": "0",
-            "connections_outbound": "0",
-            "sent_requests_total": "0",
-            "sent_requests_summary_server": "0",
-            "jellyfish_internal_encoded_bytes": "0",
-            "jellyfish_leaf_encoded_bytes": "0",
-            "jellyfish_storage_reads": "0",
-            "metrics_families_over_1000": "0",
-            "metrics_total": "0",
-            "metrics_total_bytes": "0",
-            "network_direct_send_bytes_received": "0",
-            "network_direct_send_bytes_sent": "0",
-            "network_direct_send_messages_received": "0",
-            "network_direct_send_messages_sent": "0",
-            "network_pending_health_check_events_dequeued": "0",
-            "network_pending_health_check_events_enqueued": "0",
-            "network_rpc_bytes_received_request": "0",
-            "network_rpc_bytes_received_response": "0",
-            "network_rpc_bytes_sent_request": "0",
-            "network_rpc_bytes_sent_response": "0",
-            "network_rpc_messages_received_request": "0",
-            "network_rpc_messages_received_response": "0",
-            "network_rpc_messages_sent_request": "0",
-            "network_rpc_messages_sent_response": "0",
-            "secure_net_events_connect": "0",
-            "secure_net_events_read": "0",
-            "simple_onchain_discovery_counts": "0",
-            "state_sync_pending_network_events_dequeued": "0",
-            "state_sync_pending_network_events_enqueued": "0",
-            "state_sync_reconfig_count": "0",
-            "state_sync_timeout_total": "0",
-            "sync_committed": "0",
-            "sync_highest": "0",
-            "sync_synced": "0",
-            "sync_target": "0",
-            "storage_committed_txns": "0",
-            "storage_latest_account_count": "0",
-            "storage_latest_transaction_version": "0",
-            "storage_ledger_events_created": "0",
-            "storage_ledger_new_state_leaves": "0",
-            "storage_ledger_new_state_nodes": "0",
-            "storage_ledger_stale_state_leaves": "0",
-            "storage_ledger_stale_state_nodes": "0",
-            "storage_ledger_version": "0",
-            "storage_next_block_epoch": "0",
-            "storage_service_server_pending_network_events_dequeued": "0",
-            "storage_service_server_pending_network_events_enqueued": "0",
-            "storage_service_server_requests_received": "0",
-            "storage_service_server_responses_sent": "0",
-            "struct_log_count": "0",
-            "struct_log_processed_count": "0",
-            "vm_num_txns_per_block_sum": "0",
-            "vm_num_txns_per_block_count": "0",
-            "vm_system_transactions_executed": "0",
-            "vm_txn_gas_usage_sum": "0",
-            "vm_txn_gas_usage_count": "0",
-            "vm_user_transactions_executed": "0",
-            "core_mempool_gc_event_count_client_expiration": "0",
-            "core_mempool_gc_event_count_system_ttl": "0",
-            "shared_mempool_events_new_peer": "0",
-            "system_physical_core_count": "0",
-            "system_total_memory": "0",
-            "system_used_memory": "0",
-            "sync_timestamp_committed": "0",
-            "sync_timestamp_synced": "0",
-            "sync_timestamp_real": "0",
-            "data_client_success_responses": "0",
-            "data_client_success_responses_summary_server": "0",
-            "mempool_active_upstream_peers_count": "0",
-        }
+        metric = METRIC_DEFAULT
     } else {
         metric = (d)
     }

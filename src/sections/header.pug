@@ -33,6 +33,12 @@ section.container-fluid
     script.
         function enterAddress(form) {
             $("#error-log").clear()
+            const statuses = ["api_status", 'metric_status', 'chain_status', 'sync_status', 'peer_status']
+
+            for(let s of statuses) {
+                $("#"+s).parent().removeClassBy("bg-")
+            }
+
             const address = form.elements["node_address"].value
             const api = form.elements["api_port"].value || 8080
             const metric = form.elements["metric_port"].value || 9101
