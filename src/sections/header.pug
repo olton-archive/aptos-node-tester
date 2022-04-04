@@ -19,7 +19,7 @@ section.container-fluid
 
     div.row
         div.cell-md-12.text-center.order-3.order-md-2
-            form.address-form.row(action="javascript:" onsubmit="enterAddress(this)")
+            form#address-form.address-form.row(action="javascript:" onsubmit="enterAddress(this)")
                 div.cell-md-6
                     input(type="text" data-role="input" name="node_address" placeholder="Enter clear IP address or Domain name" data-prepend="IP or DOMAIN")
                 div.cell-md-6.port-wrapper
@@ -32,7 +32,7 @@ section.container-fluid
 
     script.
         function enterAddress(form) {
-
+            $("#error-log").clear()
             const address = form.elements["node_address"].value
             const api = form.elements["api_port"].value || 8080
             const metric = form.elements["metric_port"].value || 9101

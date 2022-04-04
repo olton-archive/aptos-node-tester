@@ -52,9 +52,13 @@ export const updateHealthData = (data) => {
 
 export const updateMetricData = (d) => {
     let metric
-    const status = typeof d.connections_inbound !== "undefined"
+    const status = typeof d.system_physical_core_count !== "undefined"
+    const errorLog = $("#error-log")
 
     if (!status) {
+        errorLog.html(
+            `<div class="remark alert">Metric Error: ${d.split(":error:")[1]}</div>`
+        )
         metric = {
             "connections_inbound": "0",
             "connections_outbound": "0",
