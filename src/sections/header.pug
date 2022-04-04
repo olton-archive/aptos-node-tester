@@ -32,7 +32,9 @@ section.container-fluid
 
     script.
         function enterAddress(form) {
-            $("#error-log").clear()
+            $("#error-log-api").clear()
+            $("#error-log-metric").clear()
+
             const statuses = ["api_status", 'metric_status', 'chain_status', 'sync_status', 'peer_status']
 
             for(let s of statuses) {

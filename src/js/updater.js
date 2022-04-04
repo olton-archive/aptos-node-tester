@@ -3,15 +3,20 @@ import {n2f} from "./utils";
 
 export const updateLedgerData = (data) => {
     const ledger = data.ledger
+    const error = typeof ledger.error !== "undefined"
     const apiStatus = $("#api_status")
     const chainStatus = $("#chain_status")
+    const errorLog = $("#error-log-api").clear()
 
-    if (ledger) {
+    if (!error) {
         $("#chain_id").text(ledger.chain_id)
         $("#epoch").text(ledger.epoch)
         $("#ledger_version").text(ledger.ledger_version)
         $("#ledger_timestamp").text(datetime(ledger.ledger_timestamp / 1000).format(DATE_TIME_FORMAT))
     } else {
+        errorLog.clear().append(
+            $("<div>").addClass("remark alert").text(`API Error: ${ledger.error.split(":error:")[1]}`)
+        )
         $("#chain_id").text(0)
         $("#epoch").text(0)
         $("#ledger_version").text(0)
@@ -19,7 +24,7 @@ export const updateLedgerData = (data) => {
     }
 
     apiStatus.parent().removeClassBy("bg-")
-    if (ledger && ledger.chain_id) {
+    if (!error && ledger && ledger.chain_id) {
         apiStatus.parent().addClass("bg-green")
         apiStatus.text("CONNECTED")
     } else {
@@ -28,7 +33,7 @@ export const updateLedgerData = (data) => {
     }
 
     chainStatus.parent().removeClassBy("bg-")
-    if (ledger && +ledger.chain_id) {
+    if (!error && ledger && +ledger.chain_id) {
         if (+ledger.chain_id === 6) {
             chainStatus.parent().addClass("bg-green")
             chainStatus.text("IN CHAIN")
@@ -53,7 +58,7 @@ export const updateHealthData = (data) => {
 export const updateMetricData = (d) => {
     let metric
     const status = typeof d.system_physical_core_count !== "undefined"
-    const errorLog = $("#error-log")
+    const errorLog = $("#error-log-metric").clear()
 
     if (!status) {
         errorLog.html(
