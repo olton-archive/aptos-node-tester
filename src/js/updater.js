@@ -3,6 +3,7 @@ import {n2f} from "./utils";
 
 export const updateLedgerData = (data) => {
     const ledger = data.ledger
+    const target = data.target
     const error = typeof ledger.error !== "undefined"
     const apiStatus = $("#api_status")
     const chainStatus = $("#chain_status")
@@ -44,6 +45,10 @@ export const updateLedgerData = (data) => {
     } else {
         chainStatus.parent().addClass("bg-red")
         chainStatus.text("NO CHAIN DATA")
+    }
+
+    if (target && target.host) {
+        $("#node_host").text(target.host)
     }
 }
 

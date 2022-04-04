@@ -52,7 +52,7 @@ const wsMessageController = (ws, response) => {
                 data: {
                     host: nodeAddress,
                     port: apiPort,
-                    prot: "http"
+                    prot: protAddress
                 }
             }))
         } else {
@@ -68,7 +68,7 @@ const wsMessageController = (ws, response) => {
                 data: {
                     host: nodeAddress,
                     port: metricPort,
-                    prot: "http"
+                    prot: protAddress
                 }
             }))
         } else {
