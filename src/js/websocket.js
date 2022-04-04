@@ -1,4 +1,4 @@
-import {updateApiData, updateData, updateMetricData} from "./updater";
+import {updateApiData, updateMetricData} from "./updater";
 import {APTOS_MONITOR, APTOS_MONITOR_DEV} from "./consts";
 
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN

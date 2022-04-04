@@ -15,7 +15,7 @@ export const updateLedgerData = (data) => {
         $("#ledger_timestamp").text(datetime(ledger.ledger_timestamp / 1000).format(DATE_TIME_FORMAT))
     } else {
         errorLog.clear().append(
-            $("<div>").addClass("remark alert").text(`API Error: ${ledger.error.split(":error:")[1]}`)
+            $("<div>").addClass("remark alert").text(`API: ${ledger.error}`)
         )
         $("#chain_id").text(0)
         $("#epoch").text(0)
@@ -48,11 +48,17 @@ export const updateLedgerData = (data) => {
 }
 
 export const updateHealthData = (data) => {
-    const h = data.health
-    const c = h && !h.includes("error") ? "fg-green" : "fg-red"
-    const n = $("#node_health")
+    const error = data.health.includes(":error:")
+    const n = $("#node_health").removeClassBy("fg-")
 
-    n.removeClassBy("fg-").addClass(c).text(h ? h : "aptos-node:error")
+    if (error) {
+        n.addClass("fg-red").text("aptos-node:error")
+    } else {
+        const h = data.health
+        const c = h && !h.includes("error") ? "fg-green" : "fg-red"
+
+        n.removeClassBy("fg-").addClass(c).text(h ? h : "aptos-node:error")
+    }
 }
 
 export const updateMetricData = (d) => {
@@ -62,7 +68,7 @@ export const updateMetricData = (d) => {
 
     if (!status) {
         errorLog.html(
-            `<div class="remark alert">Metric Error: ${d.split(":error:")[1]}</div>`
+            `<div class="remark alert">Metric: ${d.split(":error:")[1]}</div>`
         )
         metric = METRIC_DEFAULT
     } else {
