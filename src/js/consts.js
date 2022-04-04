@@ -1,6 +1,8 @@
 export const DATE_TIME_FORMAT = "DD, MMM YYYY HH:mm:ss"
 export const HEALTH_ENDPOINT = '/-/healthy';
 export const LEDGER_ENDPOINT = '/';
+export const APTOS_MONITOR = '95.216.7.245'
+export const APTOS_MONITOR_DEV = 'localhost'
 
 export const METRIC_DEFAULT = {
     "connections_inbound": "0",

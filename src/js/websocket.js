@@ -1,9 +1,10 @@
 import {updateApiData, updateData, updateMetricData} from "./updater";
+import {APTOS_MONITOR, APTOS_MONITOR_DEV} from "./consts";
 
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN
 
 export const connect = () => {
-    const host = "95.216.7.245", port = 80, secure = false
+    const host = APTOS_MONITOR, port = 80, secure = false
     const ws = new WebSocket(`${secure ? 'wss' : 'ws'}://${host}:${port}`)
 
     globalThis.webSocket = ws
@@ -50,7 +51,7 @@ const wsMessageController = (ws, response) => {
                 channel: 'api2',
                 data: {
                     host: nodeAddress,
-                    port: metricPort,
+                    port: apiPort,
                     prot: "http"
                 }
             }))
