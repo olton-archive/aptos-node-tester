@@ -51,7 +51,6 @@ export const updateHealthData = (data) => {
 }
 
 export const updateMetricData = (d) => {
-    console.log(d)
     let metric
     const status = typeof d.system_physical_core_count !== "undefined"
     const errorLog = $("#error-log")
