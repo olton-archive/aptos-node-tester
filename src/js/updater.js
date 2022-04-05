@@ -24,7 +24,7 @@ export const updateLedgerData = (data) => {
         $("#ledger_timestamp").text(DATE_TIME_FORMAT)
     }
 
-    apiStatus.parent().removeClassBy("bg-")
+    apiStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (!error && ledger && ledger.chain_id) {
         apiStatus.parent().addClass("bg-green")
         apiStatus.text("CONNECTED")
@@ -33,7 +33,7 @@ export const updateLedgerData = (data) => {
         apiStatus.text("PORT CLOSED")
     }
 
-    chainStatus.parent().removeClassBy("bg-")
+    chainStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (!error && ledger && +ledger.chain_id) {
         if (+ledger.chain_id === 6) {
             chainStatus.parent().addClass("bg-green")
@@ -90,7 +90,7 @@ export const updateMetricData = (d) => {
 
     const syncStatus = $("#sync_status")
 
-    syncStatus.parent().removeClassBy("bg-")
+    syncStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (+metric.sync_synced > 0 && Math.abs(metric.sync_synced - metric.sync_target) <= 2 ) {
         syncStatus.parent().addClass("bg-green")
         syncStatus.text("SYNCED")
@@ -101,7 +101,7 @@ export const updateMetricData = (d) => {
 
     const peerStatus = $("#peer_status")
 
-    peerStatus.parent().removeClassBy("bg-")
+    peerStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (+metric.connections_outbound > 0 ) {
         peerStatus.parent().addClass("bg-green")
         peerStatus.text("OK")
@@ -112,7 +112,7 @@ export const updateMetricData = (d) => {
 
     const metricStatus = $("#metric_status")
 
-    metricStatus.parent().removeClassBy("bg-")
+    metricStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (status) {
         metricStatus.parent().addClass("bg-green")
         metricStatus.text("CONNECTED")
