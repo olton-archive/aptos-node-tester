@@ -127,3 +127,15 @@ export const updateApiData = (data) => {
     updateLedgerData(data)
     updateHealthData(data)
 }
+
+
+export const updatePortTest = data => {
+    const ports = data.test
+    if (!ports) return
+    for(let port in ports){
+        const el = $("#port-"+port).parent()
+        el.removeClassBy("bg-")
+        el.removeClassBy("fg-")
+        el.addClass(ports[port] ? "bg-green" : "bg-red").addClass("fg-white")
+    }
+}

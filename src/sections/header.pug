@@ -21,7 +21,7 @@ section.container-fluid
         div.cell-md-12.text-center.order-3.order-md-2
             form#address-form.address-form.row(action="javascript:" onsubmit="enterAddress(this)")
                 div.cell-md-6.port-wrapper
-                    select.select(style="width: 80px" name="prot_address")
+                    select.reduce-2.select(style="width: 80px" name="prot_address")
                         option(value="http") http://
                         option(value="https") https://
                     input(type="text" data-role="input" name="node_address" placeholder="Enter clear IP address or Domain name" data-prepend="IP or DOMAIN")

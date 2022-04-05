@@ -1,4 +1,4 @@
-import {updateApiData, updateMetricData} from "./updater";
+import {updateApiData, updateMetricData, updatePortTest} from "./updater";
 import {APTOS_MONITOR, APTOS_MONITOR_DEV} from "./consts";
 
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN
@@ -46,7 +46,6 @@ const wsMessageController = (ws, response) => {
 
     const requestApiData = ws => {
         if (isOpen(ws) && nodeAddress) {
-            $("#activity").show()
             ws.send(JSON.stringify({
                 channel: 'api2',
                 data: {
@@ -76,10 +75,25 @@ const wsMessageController = (ws, response) => {
         }
     }
 
+    const requestPortsTest = ws => {
+        if (isOpen(ws) && nodeAddress) {
+            ws.send(JSON.stringify({
+                channel: 'port-test',
+                data: {
+                    host: nodeAddress,
+                    ports: [8080, 9101, 6180, 6181, 6182]
+                }
+            }))
+        } else {
+            setTimeout(requestPortsTest, 5000, ws)
+        }
+    }
+
     switch(channel) {
         case 'welcome': {
             requestApiData(ws)
             requestMetricsData(ws)
+            requestPortsTest(ws)
             break
         }
         case 'metrics2': {
@@ -92,6 +106,11 @@ const wsMessageController = (ws, response) => {
             updateApiData(data)
             setTimeout(requestApiData, 5000, ws)
             $("#activity").hide()
+            break
+        }
+        case 'port-test': {
+            updatePortTest(data)
+            setTimeout(requestApiData, 5000, ws)
             break
         }
     }
