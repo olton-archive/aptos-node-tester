@@ -81,7 +81,7 @@ const wsMessageController = (ws, response) => {
                 channel: 'port-test',
                 data: {
                     host: nodeAddress,
-                    ports: [8080, 9101, 6180, 6181, 6182]
+                    ports: [apiPort, metricPort, 6180, 6181, 6182]
                 }
             }))
         } else {
