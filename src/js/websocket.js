@@ -4,7 +4,7 @@ import {APTOS_MONITOR, APTOS_MONITOR_DEV} from "./consts";
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN
 
 export const connect = () => {
-    const host = APTOS_MONITOR, port = 80, secure = false
+    const host = APTOS_MONITOR_DEV, port = 80, secure = false
     const ws = new WebSocket(`${secure ? 'wss' : 'ws'}://${host}:${port}`)
 
     globalThis.webSocket = ws
@@ -81,7 +81,11 @@ const wsMessageController = (ws, response) => {
                 channel: 'port-test',
                 data: {
                     host: nodeAddress,
-                    ports: [8080, 9101, 6180, 6181, 6182]
+                    ports: {
+                        api: apiPort,
+                        metrics: metricPort,
+                        seed: seedPort
+                    }
                 }
             }))
         } else {
@@ -110,7 +114,7 @@ const wsMessageController = (ws, response) => {
         }
         case 'port-test': {
             updatePortTest(data)
-            setTimeout(requestApiData, 5000, ws)
+            setTimeout(requestPortsTest, 5000, ws)
             break
         }
     }

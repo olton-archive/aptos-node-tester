@@ -14,5 +14,8 @@
 }
 .prepend {
   font-size: 12px;
+  padding: 8px!important;
+  display: flex!important;
+  align-items: center!important;
 }
 /*# sourceMappingURL=index.css.map */

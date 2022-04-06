@@ -131,11 +131,14 @@ export const updateApiData = (data) => {
 
 export const updatePortTest = data => {
     const ports = data.test
+    const targets = data.target.ports
+
     if (!ports) return
-    for(let port in ports){
-        const el = $("#port-"+port).parent()
-        el.removeClassBy("bg-")
-        el.removeClassBy("fg-")
-        el.addClass(ports[port] ? "bg-green" : "bg-red").addClass("fg-white")
+
+    for(let port in targets){
+        const el = $("#port-"+port)
+        const pr = el.parent()
+        pr.removeClassBy("bg-").addClass(ports[port] ? "bg-green" : "bg-red").addClass("fg-white")
+        el.text(targets[port])
     }
 }
