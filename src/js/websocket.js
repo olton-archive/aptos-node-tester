@@ -4,7 +4,7 @@ import {APTOS_MONITOR, APTOS_MONITOR_DEV} from "./consts";
 const isOpen = (ws) => ws && ws.readyState === ws.OPEN
 
 export const connect = () => {
-    const host = APTOS_MONITOR_DEV, port = 80, secure = false
+    const host = APTOS_MONITOR, port = 80, secure = false
     const ws = new WebSocket(`${secure ? 'wss' : 'ws'}://${host}:${port}`)
 
     globalThis.webSocket = ws

@@ -139,6 +139,6 @@ export const updatePortTest = data => {
         const el = $("#port-"+port)
         const pr = el.parent()
         pr.removeClassBy("bg-").addClass(ports[port] ? "bg-green" : "bg-red").addClass("fg-white")
-        el.text(targets[port])
+        el.text(`${port}: ${targets[port]}`)
     }
 }
