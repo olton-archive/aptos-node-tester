@@ -35,7 +35,7 @@ export const updateLedgerData = (data) => {
 
     chainStatus.parent().removeClassBy("bg-").addClass("fg-white")
     if (!error && ledger && +ledger.chain_id) {
-        if (+ledger.chain_id === 6) {
+        if (+ledger.chain_id === 8) {
             chainStatus.parent().addClass("bg-green")
             chainStatus.text("IN CHAIN")
         } else {
